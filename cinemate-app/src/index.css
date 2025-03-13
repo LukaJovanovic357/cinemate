@@ -13,6 +13,10 @@ main {
     padding: 10px;
 }
 
-.force-dark-mode {
-    @apply dark:bg-gray-900;
+body {
+    @apply bg-white text-black;
+}
+
+.dark body {
+    @apply bg-gray-900 text-white;
 }
