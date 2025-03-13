@@ -5,3 +5,14 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+main {
+    max-width: 1280px;
+    margin: auto;
+    min-height: 90vh;
+    padding: 10px;
+}
+
+.force-dark-mode {
+    @apply dark:bg-gray-900;
+}
