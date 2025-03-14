@@ -5,6 +5,7 @@ import Logo from '../assets/logo.png';
 
 export const Header = () => {
     const [hidden, setHidden] = useState(true);
+    const [formInput, setFormInput] = useState('');
     const [darkMode, setDarkMode] = useState(
         JSON.parse(localStorage.getItem('darkMode')) || false
     );
@@ -25,11 +26,11 @@ export const Header = () => {
     const inActiveClass =
         'text-base block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700';
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        const queryTerm = event.target.search.value;
-        event.target.reset();
-        return navigate(`/search?q=${queryTerm}`);
+    const handleSubmit = e => {
+        e.preventDefault();
+        const query = formInput;
+        navigate(`/search?q=${query}`);
+        setFormInput('');
     };
 
     return (
@@ -125,9 +126,11 @@ export const Header = () => {
                             </div>
                             <form onSubmit={handleSubmit}>
                                 <input
+                                    onChange={e => setFormInput(e.target.value)}
                                     type='text'
                                     id='search-navbar'
                                     name='search'
+                                    value={formInput}
                                     className='block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                                     placeholder='Search...'
                                     autoComplete='off'
@@ -186,6 +189,7 @@ export const Header = () => {
                                     type='text'
                                     id='search-navbar'
                                     name='search'
+                                    value={formInput}
                                     className='block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                                     placeholder='Search...'
                                     autoComplete='off'
